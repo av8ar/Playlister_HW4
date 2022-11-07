@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Alert, AlertTitle, Button, Collapse, IconButton, Modal } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import Authentication from "../auth"
+import AuthContext from "../auth"
 
 const style = {
     position: 'absolute',
@@ -16,7 +16,7 @@ const style = {
 }; 
 
 export default function MUIAccountErrorModal() {
-    const {auth} = useContext(Authentication);
+    const { auth } = useContext(AuthContext);
     let errMsg = ""
     if(auth.error) {
         errMsg = auth.error

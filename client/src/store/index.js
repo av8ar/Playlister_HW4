@@ -335,7 +335,7 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = function (id) {
         async function processDelete(id) {
             let response = await api.deletePlaylistById(id);
-            if (response.status == 200) { // instead of response.data.success
+            if (response.status === 200) { // instead of response.data.success
                 store.loadIdNamePairs();
                 history.push("/");
             }
@@ -405,7 +405,7 @@ function GlobalStoreContextProvider(props) {
     }
     store.addNewSong = function() {
         let index = this.getPlaylistSize();
-        this.addCreateSongTransaction(index, "Untitled", "?", "dQw4w9WgXcQ");
+        this.addCreateSongTransaction(index, "Untitled", "Unknown", "dQw4w9WgXcQ");
     }
     // THIS FUNCTION CREATES A NEW SONG IN THE CURRENT LIST
     // USING THE PROVIDED DATA AND PUTS THIS SONG AT INDEX
