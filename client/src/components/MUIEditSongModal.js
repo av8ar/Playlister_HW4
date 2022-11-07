@@ -3,6 +3,8 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+
 
 const style = {
     position: 'absolute',
@@ -14,6 +16,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    color: 'blue'
 };
 
 export default function MUIEditSongModal() {
@@ -48,62 +51,60 @@ export default function MUIEditSongModal() {
     }
 
     return (
-        <Modal
-            open={store.listMarkedForDeletion !== null}
+        <Dialog
+            open={store.currentModal === "EDIT_SONG"}
+            sx={{color: 'beige' }}
         >
-            <Box sx={style}>
-            <div
-            id="edit-song-modal"
-            className="modal is-visible"
-            data-animation="slideInOutLeft">
-            <div
-                id='edit-song-root'
-                className="modal-root">
-                <div
-                    id="edit-song-modal-header"
-                    className="modal-north">Edit Song</div>
-                <div
+           <DialogTitle><b>Edit Song</b></DialogTitle>
+                <DialogContent
                     id="edit-song-modal-content"
                     className="modal-center">
-                    <div id="title-prompt" className="modal-prompt">Title:</div>
-                    <input 
-                        id="edit-song-modal-title-textfield" 
-                        className='modal-textfield' 
-                        type="text" 
-                        defaultValue={title} 
+                    {/* Song Title Field using TextField from MUI */}
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="edit-song-modal-title-textfield"
+                        label="Title:"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        defaultValue={title}
                         onChange={handleUpdateTitle} />
-                    <div id="artist-prompt" className="modal-prompt">Artist:</div>
-                    <input 
+                    {/* Artist Field using TextField from MUI */}
+                    <TextField 
+                        autoFocus margin = "dense"
                         id="edit-song-modal-artist-textfield" 
                         className='modal-textfield' 
-                        type="text" 
+                        label="Artist:"
+                        type="text"
+                        fullWidth variant="standard"
                         defaultValue={artist} 
                         onChange={handleUpdateArtist} />
-                    <div id="you-tube-id-prompt" className="modal-prompt">You Tube Id:</div>
-                    <input 
+                    {/* YouTube Id Field using TextField from MUI */}
+                    <TextField 
+                        autoFocus margin = "dense"
                         id="edit-song-modal-youTubeId-textfield" 
                         className='modal-textfield' 
+                        label="You Tube Id:"
                         type="text" 
+                        fullWidth variant="standard"
                         defaultValue={youTubeId} 
                         onChange={handleUpdateYouTubeId} />
-                </div>
-                <div className="modal-south">
-                    <input 
-                        type="button" 
-                        id="edit-song-confirm-button" 
-                        className="modal-button" 
-                        value='Confirm' 
-                        onClick={handleConfirmEditSong} />
-                    <input 
-                        type="button" 
-                        id="edit-song-cancel-button" 
-                        className="modal-button" 
-                        value='Cancel' 
-                        onClick={handleCancelEditSong} />
-                </div>
-            </div>
-        </div>
-            </Box>
-        </Modal>
+                </DialogContent>
+                <DialogActions> {/* Confirm and Cancel Buttons */}
+                    <Button
+                        variant="contained"
+                        onClick={handleConfirmEditSong}
+                    >
+                        Confirm   
+                    </Button>
+                    <Button
+                        variant="contained"
+                        onClick={handleCancelEditSong}
+                    >
+                        Cancel  
+                    </Button>
+                </DialogActions>
+        </Dialog>
     );
 }
