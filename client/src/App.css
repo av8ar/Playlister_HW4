@@ -143,6 +143,7 @@ body {
 #add-list-button {
   float: left;
   pointer-events: all;
+  font-size: 80%;
 }
 
 #home-screen-title {
