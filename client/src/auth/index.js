@@ -70,7 +70,7 @@ function AuthContextProvider(props) {
         const response = await api.getLoggedIn();
         if (response.status === 200) {
             authReducer({
-                type: AuthActionType.SET_LOGGED_IN,
+                type: AuthActionType.SET_LOGGED_IN, //GET_LOGGED_IN would keep user logged in across multiple page refreshes
                 payload: {
                     loggedIn: response.data.loggedIn,
                     user: response.data.user
